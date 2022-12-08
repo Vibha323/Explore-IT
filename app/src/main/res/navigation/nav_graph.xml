@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/commonLoginFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="in.exploreit.slc.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_commonLoginFragment"
+            app:destination="@id/commonLoginFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="in.exploreit.slc.fragments.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/commonLoginFragment"
+        android:name="in.exploreit.slc.fragments.CommonLoginFragment"
+        android:label="fragment_common_auth"
+        tools:layout="@layout/fragment_common_login" >
+        <action
+            android:id="@+id/action_commonLoginFragment_to_OTPFragment"
+            app:destination="@id/OTPFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="in.exploreit.slc.fragments.Lists.ListFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" >
+        <argument
+            android:name="Source"
+            app:argType="in.exploreit.slc.data.enums.ListSource" />
+        <action
+            android:id="@+id/action_listFragment_to_eventDialogFragment"
+            app:destination="@id/eventDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/OTPFragment"
+        android:name="in.exploreit.slc.fragments.OTPFragment"
+        android:label="fragment_otp"
+        tools:layout="@layout/fragment_otp" >
+        <action
+            android:id="@+id/action_OTPFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="number"
+            app:argType="string" />
+        <argument
+            android:name="verify_id"
+            app:argType="string" />
+        <argument
+            android:name="resend_token"
+            app:argType="com.google.firebase.auth.PhoneAuthProvider$ForceResendingToken" />
+    </fragment>
+    <dialog
+        android:id="@+id/eventDialogFragment"
+        android:name="in.exploreit.slc.fragments.EventDialogFragment"
+        android:label="EventDialogFragment" >
+        <argument
+            android:name="event_position"
+            app:argType="integer" />
+    </dialog>
+</navigation>
